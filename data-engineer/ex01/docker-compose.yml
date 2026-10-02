@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:18.1
+    container_name: postgre-c
+    restart: on-failure
+    environment:
+      POSTGRES_USER: mprokosc
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: piscineds
+    ports:
+      - "5432:5432"
+  
+  pgadmin:
+    image: docker.io/dpage/pgadmin4
+    container_name: pgadmin-c
+    restart: on-failure
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:

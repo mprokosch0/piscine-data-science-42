@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:18.1
+    container_name: postgre-c
+    restart: on-failure
+    environment:
+      POSTGRES_USER: mprokosc
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: piscineds
+    ports:
+      - "5432:5432"
