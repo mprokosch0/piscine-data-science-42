@@ -29,7 +29,7 @@ def main():
                         "price": types.Numeric(10, 2),
                         "user_id": types.BigInteger(),
                         "user_session": types.UUID()
-                        }
+                    }
         
         for file in files:
             name = file.split(".")[-2]
