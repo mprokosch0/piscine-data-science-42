@@ -52,8 +52,8 @@ def sec_plot(conn: sqlalchemy.Connection):
     yaxis = [x[2] for x in data]
     ax.bar(xaxis[0:5], yaxis[0:5], width=48, align="center", color="steelblue")
     ax.set_xticks(xaxis[0:6])
-    ax.set_xlabel("frequency")
-    ax.set_ylabel("monetary value in ₳")
+    ax.set_xlabel("monetary value in ₳")
+    ax.set_ylabel("customers")
     mpl.style.use('seaborn-v0_8')
 
 
@@ -61,8 +61,6 @@ def sec_plot(conn: sqlalchemy.Connection):
 def main():
     try:
         engine = sqlalchemy.create_engine("postgresql+psycopg2://mprokosc:mysecretpassword@localhost:5432/piscineds")
-        metadata = sqlalchemy.MetaData()
-        metadata.reflect(bind=engine)
         with engine.connect() as conn:
             first_plot(conn)
             sec_plot(conn)

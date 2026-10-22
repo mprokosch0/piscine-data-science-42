@@ -5,9 +5,6 @@ import sqlalchemy
 def main():
     try:
         engine = sqlalchemy.create_engine("postgresql+psycopg2://mprokosc:mysecretpassword@localhost:5432/piscineds")
-        metadata = sqlalchemy.MetaData()
-        metadata.reflect(bind=engine)
-        table = metadata.tables["customers"]
         with engine.connect() as conn:
             table = conn.execute(sqlalchemy.text("""SELECT event_type, count(*)
                                                     FROM customers group by event_type

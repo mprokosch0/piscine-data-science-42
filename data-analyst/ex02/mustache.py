@@ -44,8 +44,6 @@ def third_plot(conn: sqlalchemy.Connection):
 def main():
     try:
         engine = sqlalchemy.create_engine("postgresql+psycopg2://mprokosc:mysecretpassword@localhost:5432/piscineds")
-        metadata = sqlalchemy.MetaData()
-        metadata.reflect(bind=engine)
         with engine.connect() as conn:
             stats = conn.execute(sqlalchemy.text("""SELECT COUNT(*), AVG(price), STDDEV(price), MIN(price),
                                                     PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY price),
